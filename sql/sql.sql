@@ -1,4 +1,4 @@
--- Query 1: Precio, review promedio y volumen por categoría
+-- Query 1: Average price, review score and order volume by product category
 SELECT 
     p.product_category_name AS category,
     AVG(i.price) AS avg_price,
@@ -11,7 +11,7 @@ INNER JOIN reviews r ON r.order_id = o.order_id
 GROUP BY p.product_category_name
 ORDER BY total_orders DESC;
 
--- Query 2: Evolución de ventas por mes y año
+-- Query 2: Monthly sales evolution by year
 SELECT 
     EXTRACT(YEAR FROM order_purchase_timestamp) AS year,
     EXTRACT(MONTH FROM order_purchase_timestamp) AS month,
@@ -20,7 +20,7 @@ FROM orders
 GROUP BY year, month
 ORDER BY year, month;
 
--- Query 3: Impacto del tiempo de entrega en la satisfacción
+-- Query 3: Impact of delivery timing on customer satisfaction
 WITH delivery AS (
     SELECT 
         o.order_id,
